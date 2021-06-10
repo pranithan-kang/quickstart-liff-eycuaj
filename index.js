@@ -47,8 +47,11 @@ async function main() {
   await getProfile();
 
   if (!liff.isInClient()) {
-    btnLogIn.style.display = 'block';
-    btnLogOut.style.display = 'block';
+    if (liff.isLoggedIn) {
+      btnLogOut.style.display = 'block';
+    } else {
+      btnLogIn.style.display = 'block';
+    }
   }
 }
 
@@ -62,5 +65,14 @@ async function getProfile() {
     email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
   } catch (exception) {}
 }
+
+btnLogIn.onclick = () => {
+  liff.login();
+};
+
+btnLogOut.onclick = () => {
+  liff.logout();
+  window.location.reload();
+};
 
 main();
