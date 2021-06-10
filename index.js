@@ -45,7 +45,7 @@ async function main() {
   }
 
   if (!liff.isInClient()) {
-    if (liff.isLoggedIn) {
+    if (liff.isLoggedIn()) {
       btnLogOut.style.display = 'block';
       await getProfile();
     } else {
