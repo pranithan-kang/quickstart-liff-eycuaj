@@ -43,8 +43,12 @@ async function main() {
       body.style.background = '#110fee';
       break;
   }
-
   await getProfile();
+
+   if (!liff.isInClient()) {
+    btnLogIn.style.display = "block"
+    btnLogOut.style.display = "block"
+  }
 }
 
 async function getProfile() {
