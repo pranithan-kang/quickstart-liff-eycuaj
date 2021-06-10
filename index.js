@@ -45,9 +45,9 @@ async function main() {
   }
   await getProfile();
 
-   if (!liff.isInClient()) {
-    btnLogIn.style.display = "block"
-    btnLogOut.style.display = "block"
+  if (!liff.isInClient()) {
+    btnLogIn.style.display = 'block';
+    btnLogOut.style.display = 'block';
   }
 }
 
