@@ -53,6 +53,7 @@ async function main() {
     }
   } else {
     await getProfile();
+    btnSend.style.display = 'block';
   }
 }
 
@@ -65,6 +66,22 @@ async function getProfile() {
   email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
 }
 
+async function sendMsg() {
+  if (liff.getContext().type !== "none" && liff.getContext().type !== "external") {
+    await liff.sendMessages([
+      {
+        "type": "text",
+        "text": "This message was sent by sendMessages()"
+      }
+    ])
+    alert("Message sent")
+  }
+}
+
+btnSend.onclick = () => {
+  await sendMsg()
+}
+
 btnLogIn.onclick = () => {
   liff.login();
 };
@@ -73,5 +90,6 @@ btnLogOut.onclick = () => {
   liff.logout();
   window.location.reload();
 };
+
 
 main();
