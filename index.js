@@ -52,8 +52,8 @@ async function main() {
       btnLogIn.style.display = 'block';
     }
   } else {
-    await getProfile();
     btnSend.style.display = 'block';
+    await getProfile();
   }
 }
 
@@ -67,20 +67,23 @@ async function getProfile() {
 }
 
 async function sendMsg() {
-  if (liff.getContext().type !== "none" && liff.getContext().type !== "external") {
+  if (
+    liff.getContext().type !== 'none' &&
+    liff.getContext().type !== 'external'
+  ) {
     await liff.sendMessages([
       {
-        "type": "text",
-        "text": "This message was sent by sendMessages()"
+        type: 'text',
+        text: 'This message was sent by sendMessages()'
       }
-    ])
-    alert("Message sent")
+    ]);
+    alert('Message sent');
   }
 }
 
-btnSend.onclick = () => {
-  await sendMsg()
-}
+btnSend.onclick = async () => {
+  await sendMsg();
+};
 
 btnLogIn.onclick = () => {
   liff.login();
@@ -90,6 +93,5 @@ btnLogOut.onclick = () => {
   liff.logout();
   window.location.reload();
 };
-
 
 main();
