@@ -407,7 +407,7 @@
   /**
    * The font family
    */
-  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  // "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
   /**
    * The font weight
    */
@@ -415,7 +415,7 @@
   /**
    * The font size
    */
-  "editor.fontSize": 20
+  // "editor.fontSize": 20
   /**
    * The line height
    */
