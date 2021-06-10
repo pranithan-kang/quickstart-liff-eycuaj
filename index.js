@@ -26,7 +26,7 @@ const friendShip = document.getElementById('friendShip');
 
 async function main() {
   // Initialize LIFF app
-  liff.init({ liffId: '1656090834-NJa1VEDB' });
+  await liff.init({ liffId: '1656090834-NJa1VEDB' });
 
   let osInfoTextElem = document.querySelector('#osInfo');
   osInfoTextElem.textContent = JSON.stringify(liff);
