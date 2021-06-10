@@ -43,6 +43,7 @@ async function main() {
       body.style.background = '#110fee';
       break;
   }
+
   await getProfile();
 
   if (!liff.isInClient()) {
@@ -53,6 +54,7 @@ async function main() {
 
 async function getProfile() {
   let profile = await liff.getProfile();
+  debugger;
   profilePicture.src = profile.pictureUrl;
   userId.innerHTML = `<b>User Id:</b> ${profile.userId}`;
   statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
