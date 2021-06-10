@@ -44,26 +44,25 @@ async function main() {
       break;
   }
 
-  await getProfile();
-
   if (!liff.isInClient()) {
     if (liff.isLoggedIn) {
       btnLogOut.style.display = 'block';
+      await getProfile();
     } else {
       btnLogIn.style.display = 'block';
     }
+  } else {
+    await getProfile();
   }
 }
 
 async function getProfile() {
-  try {
-    let profile = await liff.getProfile();
-    profilePicture.src = profile.pictureUrl;
-    userId.innerHTML = `<b>User Id:</b> ${profile.userId}`;
-    statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
-    displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
-    email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
-  } catch (exception) {}
+  let profile = await liff.getProfile();
+  profilePicture.src = profile.pictureUrl;
+  userId.innerHTML = `<b>User Id:</b> ${profile.userId}`;
+  statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
+  displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
+  email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
 }
 
 btnLogIn.onclick = () => {
