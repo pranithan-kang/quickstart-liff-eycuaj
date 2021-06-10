@@ -28,9 +28,15 @@ async function main() {
   // Initialize LIFF app
   liff.init({ liffId: '1656090834-NJa1VEDB' });
 
-  let osInfo = document.querySelector('#osInfo');
-  osInfo.textContent = 'Testing';
+  let osInfoTextElem = document.querySelector('#osInfo');
+  osInfoTextElem.textContent = JSON.stringify(liff);
 
-  // Try a LIFF function
+  let osInfo = liff.getOS();
+  switch(osInfo) {
+    case "android": body.style.background = "#d1f5d3"; break;
+    case "ios": body.style.background = "#eeeeee"; break;
+    case "web": body.style.background = "#110fee"; break;
+  }
+
 }
 main();
