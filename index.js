@@ -53,6 +53,7 @@ async function getProfile() {
   userId.innerHTML = `<b>User Id:</b> ${profile.userId}`;
   statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
   displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
+  email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
 }
 
 main();
