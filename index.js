@@ -57,6 +57,10 @@ async function main() {
     btnSend.style.display = 'block';
     await getProfile();
   }
+  if (liff.isInClient() && liff.getOS() === 'android') {
+    btnScanCode.style.display = 'block';
+  }
+  btnOpenWindow.style.display = 'block';
 }
 
 async function getProfile() {
@@ -66,6 +70,11 @@ async function getProfile() {
   statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
   displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
   email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
+}
+
+async function scanCode() {
+  const result = await liff.scanCode();
+  code.innerHTML = `<b>Code: </b> ${result.value}`;
 }
 
 async function shareMsg() {
@@ -92,6 +101,18 @@ async function sendMsg() {
     alert('Message sent');
   }
 }
+
+btnOpenWindow.onclick = () => {
+  liff.openWindow({
+    url: window.location.href,
+    external: true
+  });
+  liff.closeWindow();
+};
+
+btnScanCode.onclick = async () => {
+  await scanCode();
+};
 
 btnShare.onclick = async () => {
   await shareMsg();
