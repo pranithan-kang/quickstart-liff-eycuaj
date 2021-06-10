@@ -46,12 +46,14 @@ async function main() {
 
   if (!liff.isInClient()) {
     if (liff.isLoggedIn()) {
+      btnShare.style.display = 'block';
       btnLogOut.style.display = 'block';
       await getProfile();
     } else {
       btnLogIn.style.display = 'block';
     }
   } else {
+    btnShare.style.display = 'block';
     btnSend.style.display = 'block';
     await getProfile();
   }
@@ -64,6 +66,16 @@ async function getProfile() {
   statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
   displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
   email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
+}
+
+async function shareMsg() {
+  await liff.shareTargetPicker([
+    {
+      type: 'image',
+      originalContentUrl: 'https://d.line-scdn.net/stf/line-lp/2016_en_02.jpg',
+      previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/2016_en_02.jpg'
+    }
+  ]);
 }
 
 async function sendMsg() {
@@ -80,6 +92,10 @@ async function sendMsg() {
     alert('Message sent');
   }
 }
+
+btnShare.onclick = async () => {
+  await shareMsg();
+};
 
 btnSend.onclick = async () => {
   await sendMsg();
