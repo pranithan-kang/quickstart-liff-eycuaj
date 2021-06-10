@@ -53,13 +53,14 @@ async function main() {
 }
 
 async function getProfile() {
-  let profile = await liff.getProfile();
-  debugger;
-  profilePicture.src = profile.pictureUrl;
-  userId.innerHTML = `<b>User Id:</b> ${profile.userId}`;
-  statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
-  displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
-  email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
+  try {
+    let profile = await liff.getProfile();
+    profilePicture.src = profile.pictureUrl;
+    userId.innerHTML = `<b>User Id:</b> ${profile.userId}`;
+    statusMessage.innerHTML = `<b>Status Message:</b> ${profile.statusMessage}`;
+    displayName.innerHTML = `<b>Display Name:</b> ${profile.displayName}`;
+    email.innerHTML = `<b>Email:</b> ${liff.getDecodedIDToken().email}`;
+  } catch (exception) {}
 }
 
 main();
